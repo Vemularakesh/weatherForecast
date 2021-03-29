@@ -1,0 +1,177 @@
+.fa, .fas {
+    font-weight: 100 !important;
+}
+html, body{
+	font-size: 100%;
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+body{
+    background-color: #3257a9;
+    overflow-x: hidden;
+    width: 100%;
+}
+h1,h2,h3,h4,h5,h6,input,p,a,select{
+	font-family: 'Raleway', sans-serif;
+	margin:0;
+}
+ul,label{
+	margin:0;
+	padding:0;
+}
+body a:hover,body a{
+	text-decoration:none;
+}
+
+.city{
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+.cTime{
+    font-size: 1.125rem;
+    opacity: .65;
+    font-weight: 400;
+}
+#tct{
+    display: block;
+    position: relative;
+    font-size: 6rem;
+    line-height: .96em;
+    font-weight: 500;
+}
+#cwdDec{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.cDData{
+    background: hsla(0,0%,100%,.1)!important;
+    padding: 20px 33px 22px 27px;
+}
+.moreData{
+    background-color: rgba(65, 93, 170, 0.8);
+}
+.wtContainer, .forecastContainer{
+    margin: 12px 0px;
+    border-radius: 6px;
+    box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
+    background-color: #fff;
+}
+.cardHeader, .forecastContainer{
+    padding: 16px;
+}
+.cardHeading{
+    font-size: 1.25rem;
+}
+.wtContainer .listItem{
+    float: left;
+    width: 33.333%;
+    padding: 10px 16px;
+    border-top: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+}
+.wtContainer .listItem:last-child{
+    border-right: 0px solid #dedede;
+}
+.wtContainer .listItem .listItem_icon{
+    display: block;
+    height: auto;
+    width: 24px;
+    float: left;
+    overflow: hidden;
+}
+.wtContainer .listItem .listItem_label{
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    /* width: calc(100% - 68px); */
+    float: left;
+    overflow: hidden;
+    padding: 0 10px;
+}
+.wtContainer .listItem .listItem_wxData{
+    display: block;
+    text-align: right;
+    float: right;
+    overflow: hidden;
+}
+.sunriseSunset_graphPath {
+    stroke: #e87538;
+    fill: none;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transform-origin: 40px 40px;
+}
+.SunriseSunset_sunriseDateItem, .SunriseSunset_sunsetDateItem{
+    display: inline-block;
+}
+.SunriseSunset_sunIcon{
+    display: inline-block;
+    height: auto;
+    width: 24px;
+    fill: #febc11;
+}
+.SunriseSunset_dateValue{
+    font-size: .9375rem;
+    letter-spacing: -.3px;
+    line-height: 1.2em;
+    padding-left: 5px;
+    display: inline-block;
+}
+.feelsLikeTemp{
+    margin: 0 26px 25px 36px;
+}
+.feelsLikeTempValue{
+    font-size: 3.5rem;
+    font-weight: 600;
+}
+.feelsLikeTempLabel{
+    word-break: break-all;
+}
+
+
+@media (max-width:767px){
+    .city, .cardHeading{
+        font-size: 1rem;
+    }
+    #tct, .feelsLikeTempValue{
+        font-size: 2rem;
+    }
+    #cwdDec, .wtContainer .listItem .listItem_label, .wtContainer .listItem .listItem_wxData {
+        font-size: 0.75rem;
+        font-weight: normal;
+    }
+    #cwdImg{
+        text-align: right;
+    }
+    #cwdImg img{
+        width:50px;
+    }
+    .feelsLikeTemp {
+        margin: 15px;
+    }
+    #sunriseSunsetContainer{
+        padding: 0px 15px !important;
+    }
+    .wtContainer .listItem .listItem_icon{
+        width:18px;
+    }
+    .wtContainer .listItem .listItem_label, .wtContainer .listItem .listItem_wxData{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .wtContainer .listItem{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .wtContainer .listItem .listItem_wxData{
+        font-weight: bold !important;
+    }
+}

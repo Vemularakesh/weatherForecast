@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">  
+    <link href="./css/style2.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script type="text/javascript" src="./js/jquery.min.js"></script> 
+</head>
+<body class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent mt-3 pl-0 pr-0">
+        <a class="navbar-brand" href="#"><i class="fas fa-bars text-white"></i></a>
+        
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="#" id="todayDate"></a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <p class="text-white">°C</p>
+          </div>
+        
+      </nav>
+    <main>
+        <section class="w-100 mt-5 cDData text-white">
+            <h1 class="text-white city font-weight-bold" id="city">New York, NY, USA</h1>
+            <!-- <p class="cTime">As of 09:21 IST</p>             -->
+            <div class="CurrentConditions position-relative clearfix">
+                <div class="float-left">
+                    <h1 class="text-white" id="tct"></h1>
+                    <div id="cwdDec"></div>
+                </div>
+                <div class="float-right">
+                    <div id="cwdImg">
+                        <img src="" width="100"/>
+                    </div>
+                    <h6 class="text-white font-weight-light">
+                        <small class="pr-1"><i class="fas fa-sort-amount-up"></i>&nbsp;<i id="tht"></i></small>/
+                        <small class="pl-1"><i class="fas fa-sort-amount-down-alt"></i>&nbsp;<i id="tlt"></i></small>
+                    </h6>
+                </div>
+                                
+            </div>
+            
+        </section>
+        <section class="wtContainer">
+            <header class="cardHeader"><h2 class="cardHeading">Weather Today in New York, NY, USA</h2></header>
+            <div class="cardBody">
+                <div class="todayDetailsCard clearfix">
+                    <div class="feelsLikeTemp float-left">
+                        <span class="feelsLikeTempValue">31°</span>
+                        <span class="feelsLikeTempLabel d-block">Feels Like</span>
+                    </div>
+                    <div id="sunriseSunsetContainer" class="float-right text-center p-3">
+                        <div class="sunriseSunset">
+                            <svg data-testid="SunriseSunsetGraph" width="107" height="67">
+                                <path d="M -13.5 26.5 a 1 1 0 0 0 80 0" class="sunriseSunset_graphPath" style="transform-origin: 40px 40px;"></path>
+                                <g style="transform: translate(13.7461px, 12.6951px);">
+                                    <svg set="current-conditions" name="daylight2" theme="" class="Icon--icon--2AbGu" data-testid="Icon" aria-hidden="true" role="img">
+                                        <title>Daylight</title>
+                                        <circle cx="12" cy="12" r="12" fill="#FFF"></circle>
+                                        <path fill="#F7C044" d="M18.405 17.661a1 1 0 0 1-1.437 1.391l-1.665-1.72a1 1 0 1 1 1.437-1.39l1.665 1.72zm-5.541 2.651a1 1 0 0 1-2 0v-2.366a1 1 0 1 1 2 0v2.366zm-6.718-1.624a1 1 0 0 1-1.357-1.469l1.758-1.624a1 1 0 1 1 1.357 1.47l-1.758 1.623zm-2.753-5.769a1 1 0 1 1 .002-2l2.422.001a1 1 0 0 1-.001 2l-2.423-.001zm1.77-6.115A1 1 0 0 1 6.6 5.414l1.664 1.719a1 1 0 0 1-1.436 1.391l-1.665-1.72zm5.751-3.391a1 1 0 1 1 2 0v2.366a1 1 0 0 1-2 0V3.413zm6.5 1.903a1 1 0 1 1 1.356 1.47l-1.757 1.623a1 1 0 1 1-1.357-1.47l1.758-1.623zm3.005 6.114a1 1 0 0 1-.002 2l-2.422-.001a1 1 0 0 1 .001-2l2.423.001z"></path>
+                                        <ellipse fill="#F7C044" cx="11.85" cy="11.935" rx="3.225" ry="3.256"></ellipse>
+                                    </svg>
+                                </g>
+                            </svg>
+                            <div class="SunriseSunset_datesContainer">
+                                <div class="SunriseSunset_sunriseDateItem">
+                                    <svg class="SunriseSunset_sunIcon" set="current-conditions" name="sunrise-line" theme="" data-testid="Icon" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                                        <title>Sun Rise</title>
+                                        <path d="M10.862 6.052v5.329a.75.75 0 0 0 1.5 0V6.036l1.772 1.534a.75.75 0 0 0 .982-1.134l-3.003-2.601a.75.75 0 0 0-.982 0L8.128 6.436A.75.75 0 0 0 9.11 7.57l1.752-1.518zM21 19.128a.75.75 0 0 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z"></path>
+                                    </svg>
+                                    <span class="sunriseDateItem_dateValue"></span>
+                                </div>
+                                <div class="SunriseSunset_sunsetDateItem">
+                                    <svg class="SunriseSunset_sunIcon" set="current-conditions" name="sunset-line" theme="" data-testid="Icon" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                                        <title>Sunset</title>
+                                        <path d="M10.862 9.853L9.044 8.278a.75.75 0 1 0-.982 1.134l3.003 2.602a.75.75 0 0 0 .982 0l3.004-2.602a.75.75 0 0 0-.983-1.134l-1.706 1.478V4a.75.75 0 0 0-1.5 0v5.853zM21 19.075a.75.75 0 1 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z"></path>
+                                    </svg>
+                                    <span class="sunsetDateItem_dateValue"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix d-flex">
+                    <div class="listItem">
+                        <svg class="listItem_icon" name="temp" theme="dark" data-testid="Icon" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                            <title>Wind Speed</title>
+                            <path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path>
+                        </svg>
+                        <div class="listItem_label">Wind Speed</div>
+                        <div class="listItem_wxData">
+                            <span id="windSpeed"></span>
+                        </div>
+                    </div>
+
+                    <div class="listItem">
+                        <svg class="listItem_icon" name="temp" theme="dark" data-testid="Icon" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                            <title>Humidity</title>
+                            <path fill-rule="evenodd" d="M11.743 17.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M11.855 4c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772A1.08 1.08 0 0 1 11.855 4"></path>
+                        </svg>
+                        <div class="listItem_label">Humidity</div>
+                        <div class="listItem_wxData">
+                            <span id="humidity"></span>
+                        </div>
+                    </div>
+
+                    <div class="listItem">
+                        <svg class="listItem_icon" name="temp" theme="dark" data-testid="Icon" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                            <title>Pressure</title>
+                            <path d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z"></path>
+                        </svg>
+                        <div class="listItem_label">Pressure</div>
+                        <div class="listItem_wxData">
+                            <span id="pressure"></span>
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+
+
+        <section class="forecastContainer">
+            <canvas id="myChart" style="height: 300px;"></canvas>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="./js/skycons.js"></script>
+    <script>
+        var skycons = new Skycons({"color": "white"});
+        // want to change the icon? no problem:
+        skycons.set("icon1", Skycons.CLEAR_DAY);      
+    </script>
+
+    <script>
+        $(function() {
+        $.ajax({
+            url:"https://api.openweathermap.org/data/2.5/weather?q=New York, NY, United States&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce",
+            type: "GET",
+            dataType:"jsonp",
+            success: function(data) {
+                var cTemp = Math.round(data.main.temp) + "&#8451;";
+                let windSpeed = Math.round(data.wind.speed * 3.600000);// convert meter/sec to km/hour. (metric)
+                $("#tct").html(cTemp);
+                $("#cwdDec").html(data.weather[0].description);
+                $( '#cwdImg img' ).attr( 'src', 'https://openweathermap.org/img/w/' + data.weather[0].icon + '.png' );
+                $('#tlt').html(Math.round(data.main.temp_min) + "&#8451;");
+                $('#tht').html(Math.round(data.main.temp_max) + "&#8451;");
+                $('.feelsLikeTempValue').html(Math.round(data.main.feels_like) + "&#8451;");
+                $('#humidity').html(Math.round(data.main.humidity) + "%");                    
+                $('#windSpeed').html(windSpeed + "km/h");
+                $('#pressure').html(data.main.pressure + "mb");
+
+                var sunrise_date = new Date(data.sys.sunrise * 1000).toLocaleString("en-US", {timeZone:'America/New_york',hourCycle:'h24', hour: '2-digit', minute: '2-digit'});
+                $('.sunriseDateItem_dateValue').html(sunrise_date);
+
+                var sunset_date = new Date(data.sys.sunset * 1000).toLocaleString("en-US", {timeZone:'America/New_york',hourCycle:'h24', hour: '2-digit', minute: '2-digit'});                    
+                $('.sunsetDateItem_dateValue').html(sunset_date);
+            },
+            error: function(error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+        });
+    </script>
+
+    <script>    
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Low temperature', // Name the series
+                    data: [], // Specify the data values array
+                    data1: [],
+                    data2: [],
+                    fill: false,
+                    borderColor: '#2196f3', // Add custom color border (Line)
+                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                    borderWidth: 1 // Specify bar border width
+                },{
+                    label: 'High temperature', // Name the series
+                    data: [], // Specify the data values array
+                    data1: [],
+                    data2: [],
+                    fill: false,
+                    borderColor: '#4CAF50', // Add custom color border (Line)
+                    backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+                    borderWidth: 1 // Specify bar border width
+                }]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+            maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            // return data.labels[tooltipItem[0].index];
+                        },
+                        afterLabel: function(tooltipItem, data) {
+                            return  data.datasets[tooltipItem.datasetIndex].data1[tooltipItem.index];
+                        },
+                        beforeLabel: function(tooltipItem, data) {
+                            return  data.datasets[tooltipItem.datasetIndex].data2[tooltipItem.index];
+                        },
+                        label: function(tooltipItem, data) {
+                            var x = [tooltipItem.yLabel + ' ℃'];
+                            return x;
+                        },
+                    },
+                },
+            }
+        });
+
+
+        // this post id drives the example data
+        var postId = 1;
+        // logic to get new data
+        var getData = function() {
+            $.ajax({
+                url: 'https://api.openweathermap.org/data/2.5/onecall?lat=40.712776&lon=-74.005974&exclude=hourly&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce',
+                success: function(data) {
+                    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    for(let forecast in data.daily){
+                        var forecastDates = data.daily[forecast].dt;
+                        var sunset_date3 = new Date(forecastDates * 1000);
+                        var forecastDatesArr = String(sunset_date3.getDate()).padStart(2, '0') + " " + monthNames[sunset_date3.getMonth()] + " " +sunset_date3.getFullYear();                        
+                        var dailyMinTemp = data.daily[forecast].temp.min;
+                        var dailyMaxTemp = data.daily[forecast].temp.max;
+                        var dailyDescription = data.daily[forecast].weather[0].description;                        
+                        var d = new Date(forecastDatesArr);
+                        var dayName = days[d.getDay()];
+
+                        myChart.data.labels.push(forecastDatesArr);
+                        myChart.data.datasets[0].data.push(dailyMinTemp);
+                        myChart.data.datasets[1].data.push(dailyMaxTemp);
+                        myChart.data.datasets[0].data1.push(dailyDescription);
+                        myChart.data.datasets[1].data1.push(dailyDescription);
+                        myChart.data.datasets[0].data2.push(dayName);
+                        myChart.data.datasets[1].data2.push(dayName);
+                    }
+                    
+                    var currentDate  = new Date(data.current.dt * 1000);
+                    var currentDateNew = days[currentDate.getDay()] + "," + monthNames[currentDate.getMonth()] + " " +currentDate.getDate();
+                    $("#todayDate").html(currentDateNew);
+                    myChart.data.labels.pop();
+                    myChart.data.datasets[0].data.pop();
+                    myChart.data.datasets[1].data.pop();
+                    myChart.data.datasets[0].data1.pop();
+                    myChart.data.datasets[1].data1.pop();
+                    myChart.data.datasets[0].data2.pop(dayName);
+                    myChart.data.datasets[1].data2.pop(dayName);
+
+                    // re-render the chart
+                    myChart.update();
+                    
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
+        };
+
+        // get new data every 3 seconds
+        // setInterval(getData, 3000);
+        getData();
+        // console.log(getData());
+    </script>
+
+</body>
+</html>
