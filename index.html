@@ -26,8 +26,14 @@
         
       </nav>
     <main>
+    <div class="text-center m-auto">
+        <input type="text" class="form-control" id="userInput" placeholder="Enter your city name"/> 
+        <button id="getWeatherButton" class="btn">
+            search
+        </button>   
+    </div>
         <section class="w-100 mt-5 cDData text-white">
-            <h1 class="text-white city font-weight-bold" id="city">New York, NY, USA</h1>
+            <h1 class="text-white city font-weight-bold" id="city"></h1>
             <!-- <p class="cTime">As of 09:21 IST</p>             -->
             <div class="CurrentConditions position-relative clearfix">
                 <div class="float-left">
@@ -48,11 +54,11 @@
             
         </section>
         <section class="wtContainer">
-            <header class="cardHeader"><h2 class="cardHeading">Weather Today in New York, NY, USA</h2></header>
+            <header class="cardHeader"><h2 class="cardHeading">Weather Today in <span id="cityNameWt"></span></h2></header>
             <div class="cardBody">
                 <div class="todayDetailsCard clearfix">
                     <div class="feelsLikeTemp float-left">
-                        <span class="feelsLikeTempValue">31°</span>
+                        <span class="feelsLikeTempValue"></span>
                         <span class="feelsLikeTempLabel d-block">Feels Like</span>
                     </div>
                     <div id="sunriseSunsetContainer" class="float-right text-center p-3">
@@ -135,18 +141,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="./js/skycons.js"></script>
     <script>
+        
         var skycons = new Skycons({"color": "white"});
         // want to change the icon? no problem:
         skycons.set("icon1", Skycons.CLEAR_DAY);      
     </script>
 
     <script>
-        $(function() {
+   
+	var userInput = document.getElementById("userInput");
+    function getWeatherData(){
+        // var latLon = [];
+        // $(function() {
+            let city = userInput.value.trim();
+            String.prototype.fixWhiteSpace = function() {
+                return this.replace(/ /g, "%20");
+            };
         $.ajax({
-            url:"https://api.openweathermap.org/data/2.5/weather?q=New York, NY, United States&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce",
+            url:`https://api.openweathermap.org/data/2.5/weather?q=${city.fixWhiteSpace()}&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce`,
             type: "GET",
             dataType:"jsonp",
             success: function(data) {
+                var latLon = [];
+                // console.log(data.coord);
                 var cTemp = Math.round(data.main.temp) + "&#8451;";
                 let windSpeed = Math.round(data.wind.speed * 3.600000);// convert meter/sec to km/hour. (metric)
                 $("#tct").html(cTemp);
@@ -158,78 +175,75 @@
                 $('#humidity').html(Math.round(data.main.humidity) + "%");                    
                 $('#windSpeed').html(windSpeed + "km/h");
                 $('#pressure').html(data.main.pressure + "mb");
-
+                $("#city, #cityNameWt").html(data.name);
                 var sunrise_date = new Date(data.sys.sunrise * 1000).toLocaleString("en-US", {timeZone:'America/New_york',hourCycle:'h24', hour: '2-digit', minute: '2-digit'});
                 $('.sunriseDateItem_dateValue').html(sunrise_date);
 
                 var sunset_date = new Date(data.sys.sunset * 1000).toLocaleString("en-US", {timeZone:'America/New_york',hourCycle:'h24', hour: '2-digit', minute: '2-digit'});                    
                 $('.sunsetDateItem_dateValue').html(sunset_date);
-            },
-            error: function(error) {
-                console.log(JSON.stringify(error));
-            }
-        });
-        });
-    </script>
+                var lat = data.coord.lat;
+                var lon = data.coord.lon;
+                latLon.push(data.coord);
+                // console.log( data);
+                $(".cDData, .wtContainer, .forecastContainer").show(); 
 
-    <script>    
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Low temperature', // Name the series
-                    data: [], // Specify the data values array
-                    data1: [],
-                    data2: [],
-                    fill: false,
-                    borderColor: '#2196f3', // Add custom color border (Line)
-                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                    borderWidth: 1 // Specify bar border width
-                },{
-                    label: 'High temperature', // Name the series
-                    data: [], // Specify the data values array
-                    data1: [],
-                    data2: [],
-                    fill: false,
-                    borderColor: '#4CAF50', // Add custom color border (Line)
-                    backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
-                    borderWidth: 1 // Specify bar border width
-                }]
-            },
-            options: {
-                responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-                tooltips: {
-                    enabled: true,
-                    mode: 'single',
-                    callbacks: {
-                        title: function(tooltipItem, data) {
-                            // return data.labels[tooltipItem[0].index];
-                        },
-                        afterLabel: function(tooltipItem, data) {
-                            return  data.datasets[tooltipItem.datasetIndex].data1[tooltipItem.index];
-                        },
-                        beforeLabel: function(tooltipItem, data) {
-                            return  data.datasets[tooltipItem.datasetIndex].data2[tooltipItem.index];
-                        },
-                        label: function(tooltipItem, data) {
-                            var x = [tooltipItem.yLabel + ' ℃'];
-                            return x;
-                        },
+
+                $('#myChart').remove();
+                $('.forecastContainer').append('<canvas id="myChart" style="height: 300px;"><canvas>');
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Low temperature', // Name the series
+                            data: [], // Specify the data values array
+                            data1: [],
+                            data2: [],
+                            fill: false,
+                            borderColor: '#2196f3', // Add custom color border (Line)
+                            backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                            borderWidth: 1 // Specify bar border width
+                        },{
+                            label: 'High temperature', // Name the series
+                            data: [], // Specify the data values array
+                            data1: [],
+                            data2: [],
+                            fill: false,
+                            borderColor: '#4CAF50', // Add custom color border (Line)
+                            backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+                            borderWidth: 1 // Specify bar border width
+                        }]
                     },
-                },
-            }
-        });
+                    options: {
+                        responsive: true, // Instruct chart js to respond nicely.
+                    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+                        tooltips: {
+                            enabled: true,
+                            mode: 'single',
+                            callbacks: {
+                                title: function(tooltipItem, data) {
+                                    // return data.labels[tooltipItem[0].index];
+                                },
+                                afterLabel: function(tooltipItem, data) {
+                                    return  data.datasets[tooltipItem.datasetIndex].data1[tooltipItem.index];
+                                },
+                                beforeLabel: function(tooltipItem, data) {
+                                    return  data.datasets[tooltipItem.datasetIndex].data2[tooltipItem.index];
+                                },
+                                label: function(tooltipItem, data) {
+                                    var x = [tooltipItem.yLabel + ' ℃'];
+                                    return x;
+                                },
+                            },
+                        },
+                    }
+                });
 
 
-        // this post id drives the example data
-        var postId = 1;
-        // logic to get new data
-        var getData = function() {
-            $.ajax({
-                url: 'https://api.openweathermap.org/data/2.5/onecall?lat=40.712776&lon=-74.005974&exclude=hourly&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce',
+
+                $.ajax({
+                url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latLon[0].lat}&lon=${latLon[0].lon}&exclude=hourly&units=metric&appid=2018d224e6c59ba5f73cdd0dd26757ce`,
                 success: function(data) {
                     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -271,12 +285,29 @@
                     console.log(JSON.stringify(error));
                 }
             });
-        };
 
-        // get new data every 3 seconds
-        // setInterval(getData, 3000);
-        getData();
-        // console.log(getData());
+
+                
+
+            },
+            error: function(error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+        // });
+        
+    }
+    const getWeather = document.getElementById("getWeatherButton");
+
+        // submit if user clicks button
+getWeather.onclick = function() {
+	getWeatherData();
+};
+
+// also submit if user hits enter in input box
+userInput.onkeydown = function(e) {
+	if (e.key === 'Enter') getWeatherData();
+};
     </script>
 
 </body>
