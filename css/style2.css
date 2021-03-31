@@ -24,7 +24,20 @@ ul,label{
 body a:hover,body a{
 	text-decoration:none;
 }
-
+ #getWeatherButton{
+    background-color: #fff;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #3257a9;
+}
+#userInput{
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+.cDData, .wtContainer, .forecastContainer{
+    display: none;
+}
 .city{
     font-weight: 600;
     font-size: 1.25rem;
